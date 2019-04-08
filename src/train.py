@@ -20,7 +20,8 @@ def train():
 
 	# Train the model
 	model = create_model()
-	model.fit(X_train, y_train, epochs=10, validation_data=(X_val, y_val))
+	model.compile(loss='categorical_crossentropy',optimizer='Adam',metrics=['accuracy'])
+	model.fit(X_train, y_train, epochs=100, validation_data=(X_val, y_val))
 
 	# Save the model
 	model.save("../models/model.h5")
