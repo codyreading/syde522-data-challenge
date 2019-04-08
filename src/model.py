@@ -24,7 +24,7 @@ def create_model():
     model.save_weights("../models/all_nontrainable.h5")
 
     base_model = ResNet50(include_top=False, weights="imagenet", input_shape=(HEIGHT, WIDTH, 3))
-    for layer in base_model.layers[:-100]:
+    for layer in base_model.layers[:-50]:
         layer.trainable = False
 
     x = base_model.output
