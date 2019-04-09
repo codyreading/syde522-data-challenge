@@ -6,6 +6,7 @@ from keras.utils import to_categorical
 from keras.optimizers import Adam
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
+from keras.applications.resnet50 import preprocess_input
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,12 +29,16 @@ def train():
 
 	# Data augmentation
 	train_datagen = ImageDataGenerator(
+		rotation_range = 30,
 		rescale = 1./255,
 		shear_range = 0.2,
 		zoom_range = 0.2,
-		horizontal_flip = True)
+		horizontal_flip = True,
+		preprocessing_function=preprocess_input)
 
-	val_datagen = ImageDataGenerator(rescale=1./255)
+	val_datagen = ImageDataGenerator(
+		rescale=1./255,
+		preprocessing_function=preprocess_input)
 
 	train_gen = train_datagen.flow(X_train, y_train, batch_size = BATCH_SIZE)
 	val_gen = train_datagen.flow(X_val, y_val, batch_size = BATCH_SIZE)
@@ -58,6 +63,7 @@ def train():
 	plt.legend(['train', 'test'], loc='upper left')
 	plt.show()
 	plt.savefig('../plots/accuracy.png')
+	plt.close()
 
 	# summarize history for loss
 	plt.plot(history.history['loss'])
@@ -67,6 +73,7 @@ def train():
 	plt.xlabel('epoch')
 	plt.legend(['train', 'test'], loc='upper left')
 	plt.savefig('../plots/loss.png')
+	plt.close()
 
 if __name__ == "__main__":
 	train()
