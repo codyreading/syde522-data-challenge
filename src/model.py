@@ -2,8 +2,6 @@
 import keras
 from keras.models import Sequential, Model
 from keras.layers import Dense, Dropout, Flatten
-#from keras.layers import Conv2D, MaxPooling2D, Activation
-#from keras.layers.normalization import BatchNormalization
 from keras.applications.resnet50 import ResNet50
 
 def create_model():
