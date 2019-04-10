@@ -1,5 +1,11 @@
 # syde522-data-challenge
-Primary site classification in histopathology images. Uses ResNet50 and train's from scratch.
+Primary site classification in histopathology images. Uses ResNet50 and train's from scratch with Keras.
+
+### Environment setup
+Create an Anaconda environment for this project
+```
+conda env create -f environment.yml
+```
 
 ### Training
 Run the following script to train the model
