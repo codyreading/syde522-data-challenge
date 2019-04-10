@@ -27,7 +27,7 @@ def train():
 	# Create validation split
 	X_train, X_val, y_train, y_val = train_test_split(X, y, random_state=7, test_size=0.2)
 
-	# Data augmentation
+	# Data augmentation and preprocessing
 	train_datagen = ImageDataGenerator(
 		rotation_range = 30,
 		rescale = 1./255,
@@ -41,7 +41,7 @@ def train():
 		preprocessing_function=preprocess_input)
 
 	train_gen = train_datagen.flow(X_train, y_train, batch_size = BATCH_SIZE)
-	val_gen = train_datagen.flow(X_val, y_val, batch_size = BATCH_SIZE)
+	val_gen = val_datagen.flow(X_val, y_val, batch_size = BATCH_SIZE)
 
 	# Checkpoint
 	filepath = "../models/model.h5"
